@@ -1,0 +1,209 @@
+python 进入解释程序(交互状态)
+Control+D(UNIX中) 或 Control+Z(DOS或Windows中) 退出解释程序
+python 文件名 或 ./文件名 运行python程序
+
+如果字符串中有单撇号而没有双撇号则用双撇号包裹，否则应该用单撇号包裹
++连接
+*重复
+
+a,b=0,1 多元素定义
+# 注释
+\ 续行&转义
+\n\ 换行
+''或repr() 转换为字符串
+"""(''') 整体换行
+raw_input() 输入
+print 输出
+% C语言输出格式
+if..:elif..else
+for..in..:
+rang(start,end,step) 循环数字
+break/continue 控制条件
+pass 等待键盘中断
+del 删除片段或变量
+int() 取整
+round() 进位取整
+divmod() 除法
+ord() 转字符编码值
+char() 转字符
+replece() 替换字符，不改原型
+split() 分割字符串
+join() 连接成字符串
+upper() 转换为大写
+abs() 绝对值
+cmp() 比大小
+u'...' 转为UTF-8编码
+decode('utf-8') 转为Unicode编码
+
+w[num:num] 列表（list）
+m[w] 嵌套列表
+len() 求长度
+insert(i, x) 在指定位置前插入一项
+append(x) 等价于insert(len(w), x)  
+index(x) 在列表中查找值x然后返回第一个值为x的元素的下标。没有找到时出错。 
+remove(x) 从列表中删去第一个值为x的元素，找不到时出错。 
+sorted() 对列表元素在原位排序。注意这个方法改变列表，而不是返回排序后的列表。 
+reverse() 把列表元素反序。改变列表。 
+count(x) 返回x在列表中出现的次数。  
+
+t = 12345, 54321, 'hello!' 序表（tuple）,由一系列值用逗号分隔而成，不允许对序表的某一项赋值
+x, y, z = t 序表解包(列表也可这样解包)
+set([]) 元组，无需值，不会有重复元素
+tel = {'jack': 4098, 'sape': 4139} 字典，键值组成（添加:tel['guido'] = 4127,查键:tel.keys()）
+列表（list）总是小于字符串（string），字符串总是小于序表（tuple）
+isinstance(..., Iterable) 判断是否可迭代
+def fun():.. 定义函数过程
+filter(函数, 序列) 过滤序列，返回结果序列
+map(函数，序列) 返回序列
+reduce(函数, 序列) 返回值累加的结果
+
+import 文件.py 导入模块，需对象引用
+from 文件.py import 模块函数名,模块函数名，直接使用
+sys 系统库(sys.ps1为'>>>'，sys.ps2为'...',sys.path为sys变量)
+dir(模块名) 列出一个模块所定义的名字，返回字符串列表,不会列出内置函数、变量的名字
+help(对象) 帮助手册
+__builtin__ 标准模块,包含内置名字
+__init__.py 指示Python把这个目录看成包
+lambda 匿名函数
+
+open(文件名，模式)
+read(size) 读入一定字节数的数据返回为一个字符串
+readline() 从文件中读入一行
+readlines() 反复调用readline()
+write(string) 把string的内容写入到文件中，返回None
+tell() 返回文件对象的当前读写位置
+seek(位移，参数) 参数:0开始、1当前、2尾部
+close() 关闭文件
+
+pickle持久对象
+类作用域
+内层作用域:局部名字
+中层作用域:全局名字
+外层作用域:内置名字
+
+面向对象
+type(类名,(基类,),dict(方法))
+等同
+class 类名(基类1,基类2):
+    <语句/方法>
+
+__doc__() 有效的属性,只读,返回类的文档字符串
+__init__(self):self.empty()  初始化方法
+__str__(self): 打印方法
+__repr__(self): 调试方法,一般__repr__=__str__
+__iter__(self): 迭代方法
+__getitem__(self): 取数方法
+__getAttr__(self): 设置获取不存在的属性
+__call__(self): callable()判断对象是否又该方法
+__slots__ 限制绑定属性,继承类失效
+＠property 设置属性调用方法
+__xx 私有变量,外部无法访问
+_x 当成私有变量,外部可以访问
+__xx__ 特殊变量,外部可以访问
+type(object) 显示对象类型
+
+isinstance(object,instance) 判断对象类型
+dir(object) 显示对象所有属性和方法
+
+
+正则表达式
+\d 匹配一个数字
+\D 匹配一个非数字
+\w 匹配一个字母或数字
+\W 匹配一个非字母或数字
+\s 匹配一个间隔符（空格符、制表符、回车符）
+\S 匹配一个非间隔符（空格符、制表符、回车符）
+\A 匹配字符串开头
+\Z 匹配字符串结尾
+\b 匹配单词边界
+\B 匹配非单词边界
+(?:) 无捕获组
+(?# ) 注释
+. 匹配任意一个字符
+* 0或多次匹配
++ 1次或多次匹配
+? 0或1次匹配
+{n} 精确匹配n次
+{n,m}  匹配最少n次，最多m次
+[] 范围
+A|B 匹配A或B
+^ 行的开头
+$ 行的结束
+(?P<name>…) 命名组
+(?P=name) 调用已匹配的命名组
+r'...'前缀 不考虑转义【\\失效】
+re.match()方法判断是否匹配，如果匹配成功，返回一个Match对象，否则返回None【需导import re后使用】
+() 提取分组（Group）
+
+
+错误调试
+1.print
+2.assert 加-0参数可关闭
+3.logging 可输出到文件
+4.pdb 单步调试
+
+pickle.dump(变量，文件) 变量写入文件
+pickle.dumps(变量) 变量转为字串
+pickle.load(文件) 读取文件中变量
+pickle.loads(字串) 字串转为变量
+json.dumps(变量) 变量转为JSON字串
+json.loads(字串) 字串转为JSON字串 
+JSON类型 --> Python类型
+  {}     -->  dict
+  [] 	 -->  list
+"string" --> 'str'或u'unicode'
+1234.56  --> int或float
+true/false-->True/False
+ null    --> None
+
+
+sort和sorted排序方法(默认reverse=False正序)
+1.普通列表排序
+a=[2,1,3]
+a.sort()
+sorted(a)
+sorted(a,,key=lambda d:d,reverse=False)
+2.元组排序
+a=[('b',2),('a',1),('c',0)]
+a=[{'b',2},{'a',1},{'c',0}]
+sorted(a,key=lambda d:d[0])
+3.字典排序
+a={'b':2,'a':1,'c':3}
+sorted(a.items(),key=lambda d:d[0])
+4.字典列表排序
+a=[{'name':'y','age':2},{'name':'x','age':1},{'name':'z','age':3}]
+sorted(a,key=lambda d:d['name'])
+多属性排序
+a=[{'name':'z','age':2},{'name':'x','age':2},{'name':'z','age':3}]
+sorted(a,key=lambda d:(d['name'],d['age']))
+sorted(a,key=lambda d:(d['name'],-d['age']))
+
+class Reversinator(object):
+    def __init__(self, obj):
+        self.obj = obj
+    def __lt__(self, other):
+        return other.obj < self.obj
+sorted(a,key=lambda d:(d['age'],Reversinator(d['name'])))
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

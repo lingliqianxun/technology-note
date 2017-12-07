@@ -1,0 +1,93 @@
+
+<!DOCTYPE html> 标准模式（standard mode）的声明
+<html lang="zh-CN"> 设置正确的语言
+<meta http-equiv="X-UA-Compatible" content="IE=Edge"> IE 兼容模式
+<meta charset="UTF-8"> 字符编码
+
+<html>...</html> 描述网页
+<body>...</body> 页面内容
+<title>...</title>标题 
+<h1~6>..</h1~6> 大标题
+<p>...</p> 段落
+<img src="url"/>图片
+<br>或<br /> 换行
+<hr /> 水平分割线
+<!--...--> 注释
+<a href="..." target="_blank或_top">...</a> 定义锚链接
+<base>...</base> 定义页面上所有链接的默认地址或默认目标。
+<link>...</link> 定义文档与外部资源之间的关系。
+<meta>...</meta> 定义关于 HTML 文档的元数据。
+<script>...</script> 定义客户端脚本。
+<noscript>...</noscript> 为不支持客户端脚本的浏览器定义替代内容。
+<style>...</style> 定义文档的样式信息。
+
+ 9 种文本物理样式
+<b>...</b> 粗体
+<i>...</i> 斜体
+<big>...<big> 放大
+<small>...<small> 缩小
+<ins>...</ins>下划线
+<del>...</del> 删除线
+<sup>...</sup> 上标字
+<sub>...</sub> 下标字 
+<tt>...</tt> 等宽
+
+<table>...</table> 表格
+<caption>...<caption> 定义表格标题。 
+<tr>...</tr> 定义表格的行。 
+<th>...</th> 定义表格的表头。 
+<td>...</td> 定义表格单元。 
+<thead>... 定义表格的页眉。 
+<tbody>... 定义表格的主体。 
+<tfoot>... 定义表格的页脚。 
+<col>... 定义用于表格列的属性。 
+<colgroup>... 定义表格列的组。 
+&nbsp 显示空单元格
+
+<ul>...</ul> 无序列表
+<ol>...</ol> 有序列表
+<li>...</li> 列表项
+<dl>...</dl> 定义列表
+<dt>...</dt> 定义项目
+<dd>...</dd> 定义的描述
+
+<div>...</div> 分区或节（division/section）。 
+<span>...</span> 组合文档中的行内元素。 
+<frameset>...<frameset> 框架结构标签
+<frame>...<frame> 框架标签
+<iframe src="url">...</iframe> 内联框架
+
+<form>...</form> 表单 
+<input>...</input> 输入域 
+<textarea>...</textarea> 文本域 (一个多行的输入控件) 
+<label>...</label> 标签 
+<button>...</button> 按钮 
+<fieldset>...</fieldset> 域 
+<legend>...</legend> 域的标题 
+<select>...</select> 下拉列表 
+<optgroup>...</optgroup> 选项组 
+<option>...</option> 下拉列表中的选项 
+
+HTML规范语法
+  用两个空格来代替制表符（tab） -- 这是唯一能保证在所有环境下获得一致展现的方法。
+  嵌套元素应当缩进一次（即两个空格）。
+  对于属性的定义，确保全部使用双引号，绝不要使用单引号。
+  不要在自闭合（self-closing）元素的尾部添加斜线 -- HTML5 规范中明确说明这是可选的。
+  不要省略可选的结束标签（closing tag）（例如，</li> 或 </body>）。
+
+属性顺序
+  class
+  id, name
+  data-*
+  src, for, type, href
+  title, alt
+  aria-*, role
+布尔（boolean）型属性:如果有值，就是 true，如果没有值，就是 false。
+
+如何从 HTML 转换到 XHTML
+1.向每张页面的第一行添加 XHTML <!DOCTYPE>
+2.向每张页面的 html 元素添加 xmlns 属性
+3.把所有元素名改为小写
+4.关闭所有空元素
+5.把所有属性名改为小写
+6.为所有属性值加引号

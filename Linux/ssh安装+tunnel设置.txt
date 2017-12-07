@@ -1,0 +1,62 @@
+1.查看是否安装
+ps -ef|grep ssh
+2.安装
+sudo apt-get install openssh-server
+3.生产ssh个人公密钥
+ssh-keygen
+4.配置文件～/.ssh文件夹下
+config文件格式
+HOST dev 
+    HostName    10.1.1.8 
+    User        haha
+id_rsa文件为个人私钥
+id_rsa.pub文件为个人公钥
+authorized_keys文件为认证公钥
+5.ssh参数
+-f 后台运行,不打开终端
+-R 反向,让对方也可以连接过来
+-l 登录用户名,loginname
+-c 指定加密方式:blowfish|3des
+-v 显示详细信息,verbose
+-V 显示版本,version
+-a 关闭代理认证
+-A 启用代理认证
+-C 启用Gzip压缩
+-e 设定跳脱字节
+-g 允许远程主机连接本地指派的port
+-i 选择所读取的RSA 认证识别的档案
+-n 重导 stdin 到 /dev/null
+-N 不执行远程命令
+-p 指定ssh服务端口
+-q 安静模式
+-L local_port:host:port 指派本地的 port 到相对远程host地址的port
+-R remote_port:host:port 指派远程的 port 到相对本地host地址的port
+-2 强制 ssh 去使用协议版本2
+-4 强制 ssh 去使用 IPv4 地址
+-6 强制 ssh 去使用 IPv6 地址 
+-o 添加设置
+	TCPKeepAlive=yes 长时间保持会话
+	ServerAliveInterval=20 定时发送请求
+	ServerAliveCountMax=100 重连次数
+
+tunnel设置
+1.设置
+修改ssh server的/etc/ssh/sshd_config
+#反向遂道
+GatewayPorts  yes
+#正向遂道
+AllowTcpForwarding true
+2.重启ssh
+/etc/init.d/ssh restart
+3.实例
+反向遂道
+ssh -R 8422:192.168.1.1:8422 -R 61616:192.168.1.1:61616  root@10.10.10.10 -g -N -C -o TCPKeepAlive=yes
+正向遂道
+ssh -L 8422:localhost:8422 -L 61616:localhost:61616  root@9.125.13.30 -g -N -C -o TCPKeepAlive=yes
+
+autossh设置
+1.安装
+sudo apt-get install autossh
+2.实例
+autossh -M 5678 
+

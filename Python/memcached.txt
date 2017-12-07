@@ -1,0 +1,125 @@
+memcached分布式内存对象缓存系统
+
+1.安装
+系统中安装sudo apt-get install memcached
+虚拟环境中安装pip install python-memcached(针对python2，python3-memcached针对python3)
+或
+wget ftp://ftp.tummy.com/pub/python-memcached/python-memcached-latest.tar.gz
+解压，进入目录
+python setup.py install
+
+
+2.配置memcached
+由于memcached不能用root帐号启动服务，所以要创建一个非root帐号
+adduser memcache
+
+
+3.运行
+memcached -u memcache -d
+
+命令说明
+-u 运行Memcache的用户，默认不能用root启动，所以当前用户为root用户时，需要用-u参数来指定
+-d 作为daemon在后台启动
+-P(大写) 设置保存Memcache的pid文件
+-p(小写) 使用的TCP端口。默认为11211
+-m 最大内存大小。默认为64M
+-l 是监听的服务器IP地址，默认为所有网卡。
+-vv 用very vrebose模式启动，调试信息和错误输出到控制台
+-c 最大运行的并发连接数，默认是1024，按照服务器的负载量来设定
+-l 监听的服务器IP地址，如果有多个地址的话
+-f 控制slab块递增值
+
+
+4.关闭
+sudo kill `cat /var/run/memcached.pid`
+
+
+5.基本命令
+语法:
+command <key> <flags> <expiration time> <bytes>
+<value>
+
+command参数:
+add					添加变量
+set					设置变量
+append				后追加
+prepend				前追加
+replace				修改变量值和存储
+cas					只修改变量值(checked and set)
+get					获取变量
+gets				获取变量(多返回一个数判断变量是否有修改)
+delete				删除变量
+stats [slabs|items] 查询状态
+flush_all			清除缓存
+quit				退出
+
+其它参数:
+key                用于查找缓存值
+flags              可以包括键值对的整型参数，客户机使用它存储关于键值对的额外信息
+expiration time    在缓存中保存键值对的时间长度（以秒为单位，0 表示永远）
+bytes              在缓存中存储的字节点
+value              存储的值（始终位于第二行） 
+
+附(stats详细信息):
+STAT pid 22459                             进程ID
+STAT uptime 1027046                        服务器运行秒数
+STAT time 1273043062                       服务器当前unix时间戳
+STAT version 1.4.4                         服务器版本
+STAT pointer_size 64                       操作系统字大小(这台服务器是64位的)
+STAT rusage_user 0.040000                  进程累计用户时间
+STAT rusage_system 0.260000                进程累计系统时间
+STAT curr_connections 10                   当前打开连接数
+STAT total_connections 82                  曾打开的连接总数
+STAT connection_structures 13              服务器分配的连接结构数
+STAT cmd_get 54                            执行get命令总数
+STAT cmd_set 34                            执行set命令总数
+STAT cmd_flush 3                           指向flush_all命令总数
+STAT get_hits 9                            get命中次数
+STAT get_misses 45                         get未命中次数
+STAT delete_misses 5                       delete未命中次数
+STAT delete_hits 1                         delete命中次数
+STAT incr_misses 0                         incr未命中次数
+STAT incr_hits 0                           incr命中次数
+STAT decr_misses 0                         decr未命中次数
+STAT decr_hits 0                           decr命中次数
+STAT cas_misses 0    					   cas未命中次数
+STAT cas_hits 0                            cas命中次数
+STAT cas_badval 0                          使用擦拭次数
+STAT auth_cmds 0
+STAT auth_errors 0
+STAT bytes_read 15785                      读取字节总数
+STAT bytes_written 15222                   写入字节总数
+STAT limit_maxbytes 1048576                分配的内存数（字节）
+STAT accepting_conns 1                     目前接受的链接数
+STAT listen_disabled_num 0                
+STAT threads 4                             线程数
+STAT conn_yields 0
+STAT bytes 0                               存储item字节数
+STAT curr_items 0                          item个数
+STAT total_items 34                        item总数
+STAT evictions 0                           为获取空间删除item的总数
+
+
+6.测试连接
+$ telnet localhost 11211
+Trying 127.0.0.1...
+Connected to localhost.localdomain (127.0.0.1).
+Escape character is '^]'.
+set foo 0 0 3     （保存命令）
+bar               （数据）
+STORED            （结果）
+get foo           （取得命令）
+VALUE foo 0 3     （数据）
+bar               （数据）
+
+
+7.配置django
+在项目的settings.py中增加中间件和修改
+CACHES = { 
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211', 
+    }   
+}
+
+

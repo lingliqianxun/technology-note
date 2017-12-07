@@ -1,0 +1,10 @@
+deb http://mirrors.163.com/ubuntu/ devel main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ devel-security main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ devel-updates main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ devel-proposed main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ devel-backports main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ devel main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ devel-security main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ devel-updates main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ devel-proposed main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ devel-backports main restricted universe multiverse

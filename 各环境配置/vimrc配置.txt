@@ -1,0 +1,43 @@
+" 显示行号
+set nu
+" 颜色加亮
+set bg=dark
+
+" 设置粘贴快捷键
+nnoremap <F2> :set invpaste paste?<CR>
+imap <F2> <C-O>:set invpaste paste?<CR>
+set pastetoggle=<F2>
+
+" 自动缩进
+set autoindent
+
+set ts=4
+%retab!
+" 用空格代替制表符
+set expandtab
+" 缩进宽度
+set shiftwidth=4
+" 制表符宽度
+set tabstop=4
+
+" 让 VIM 记住上次编辑的位置
+autocmd BufReadPost *
+\ if line("'\"") > 0 && line("'\"") <= line("$") |
+\ exe "normal g`\"" |
+\ endif
+
+" 一次删除一个中文
+set fileencodings=ucs-bom,utf-8,cp936,latin1
+set encoding=cp936
+set fileencoding=cp936
+set termencoding=cp936
+
+" 语法高亮
+if &t_Co > 2 || has("gui_running")
+  " Revert with ":syntax off".
+  syntax on
+
+  " I like highlighting strings inside C comments.
+  " Revert with ":unlet c_comment_strings".
+  let c_comment_strings=1
+endif

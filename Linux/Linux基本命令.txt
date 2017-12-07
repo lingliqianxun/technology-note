@@ -1,0 +1,542 @@
+﻿★☆服务器命令☆★
+连接服务器
+ftp 172.16.0.103/10/117
+登入：boss boss
+cd,lcd/pwd,ls/dir,exit/bye
+获取：get,put,mget,mput
+
+ssh 10.1.1.1 -l 用户名
+ssh上传本地文件到服务器（下载相反顺序）
+scp <本地文件名> <用户名>@<ssh服务器地址>:<上传保存路径即文件名>
+获取公私密钥匙
+ssh-keygen后在~/.ssh/目录下生成公钥id_rsa和私钥id_rsa.pub，在服务器上~/.ssh/下创建authorized_keys文件并添加公钥
+主机取别名
+在~/.ssh/目录下创建config文件添加内容
+HOST dev
+	HostName    10.1.1.8
+	User        xx
+	Port		xx
+
+http命令安装
+sudo apt-get install http
+pip install --upgrade httpie
+pip install --upgrade requests
+
+HTTP方式
+http -a 用户名:密码 [POST|PATCH|DELETE默认GET] http://localhost:8000/api/... username="123" profile:='{"qq":"123"}' Authorization:"token 28aaf59" Accept:"application/json;version=2.0"
+
+CURL方式
+curl -u 用户名:密码 -X [POST|PATCH|DELETE默认GET] http://localhost:8000/api/... -H 'Authorization:token 28aaf59' -H 'Accept:application/json;version=2.0' --form username=123 --form file=@./a.txt
+
+★☆系统文件☆★
+{/etc/vim/vimrc
+/home/用户/.vimrc Vi配置文件}
+env显示所有环境变量
+查询系统环境变量的值
+echo $USER
+echo $SHELL 会显示/bin/bash
+★Linux系统启动过程★
+/etc/grub.conf 系统启动内核引导(双系统/boot/grub/grub.cfg)
+/etc/inittab 运行级别文件
+/etc/rc.d/rcX.d[KS]*服务项
+h)	
+/etc/rc.d/rc.local 执行本地特殊配置
+
+★SHELL解释器中bash★
+clear 清屏 或Ctrl+L快捷键Ctrl+u清除当行
+history 显示输入记录
+history -c 清除输入记录
+!数 执行相应命令
+!!重复前一命令并显示命令
+echo $HISTSIZE
+{/etc/profile 系统环境变量文件
+/home/用户/.bash_profile 用户环境变量文件}
+变量=`***`(加`为命令)（echo $变量）设置环境变量
+unset 变量(删除变量)
+alias 新建快捷名='所执行命令'
+unalias 取消快捷键
+{/etc/bash.bashrc(centos下/etc/bashrc) 系统环境变量配置文件
+/home/用户/.bashrc 用户环境配置文件}
+source ~/.bashrc 更新起效
+echo $PATH
+PATH=$PATH:/** 设置环境变量
+export PATH命令临时生效
+
+★时间时区★
+1.查看current_time
+data [-R标准格式] 
+2.修改current_time
+tzselect 图形选择修改方式
+cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime 复制修改方式
+3.查看local_time和utc_time
+dpkg-reconfigure -f noninteractive tzdata 
+4.修改local_time
+dpkg-reconfigure tzdata 图形选择修改方式
+echo "Asia/Shanghai" > /etc/timezone 文件修改方式
+
+★☆基本操作命令☆★
+mount -t 文件系统类型 设备名 挂载点
+unmount 挂在目录
+df -k 查看Unix系统分区情况
+shutdown -h/-r/-c 系统关机/重启/取消
+halt -f 强行关机
+reboot 系统重启
+pwd 显示当前工作目录
+
+
+ls -a 显示所有文件，包括隐藏文件
+ls -l 以列表形式显示详细信息
+ls -R 遍历目录
+ls -t 节点时间顺序
+ls –d 查看目录本身的属性
+ls -F 显示文件类型
+ls -S按大小排序显示
+
+
+touch 建立空文件,更新文件修改时间
+mkdir -p 递归创建目录
+
+cp -r src_dir des_dir  递归复制命令(复制子目录信息)
+
+rm 只删除文件
+rmdir 删除空目录
+rm –rf  * 删除所有内容(文件和目录)  r递归 f强制
+
+ln [–s] 源 目标  （-s表示建立软链接，不加表示建立硬链接）
+ln –s 指向实际文件另 命名
+
+★元字符(正则表达式，除了.和_不是元字符)★
+\持续到下一行，转义字符
+; 命令连接符
+通配符 
+? 一个字符 
+* 多个字符 
+[0-9 a-z A-Z ]一个字符
+
+< 输入重定向（不从键盘输入）
+> 覆盖
+>> 添加
+2> 执行时记录错误信息(覆盖)
+2>> 执行时记录错误信息(添加)
+echo [-e] 文字 >文件 (-e转义)
+cat 文件 >文件
+| 管道
+'*' 命令替换符('为·)
+&& 只有前面命令执行成功后才执行后面命令
+|| 只有前面命令执行失败后才执行后面命令
+
+
+★☆查看系列命令☆★
+cat显示文件内容
+-A :相当亍 -vET 的整合选项,可列出一些特殊字符而不是空白而已;
+-b :列出行号,仅针对非空白行做行号显示,空白行不标行号!
+-E :将结尾的断行字符 $ 显示出来;
+-n :打印出行号,连同空白行也会有行号,与-b 的选项不同;
+-s 合并空白行
+-T :将 [tab] 按键以 ^I 显示出来;
+-v :列出一些看不出的特殊字符
+more 显示文件内容,带分页
+head [-1] 前部分显示
+tail [-1] 后部分显示
+tail -f 动态监视文件内容
+sort [-u] 排序显示(-u先排寻再合并重复行)
+uniq 只合并重复行
+
+grep ** 文件## 在文件中查询字符串匹配行并输出整行
+man ascii显示ASCII字符表
+diff [-c] 比较文件不同(-u详细显示)
+file 显示文件类型
+
+which 显示系统命令所在目录(会提供别名信息)
+whereis 显示所有所在目录
+
+locate 查找文件和目录(速度快)，有时需要配合
+updatedb命令使用
+find [搜索路径] [搜索关键字]find / -name “xxx(*或?)“（加”递归搜索）
+find /root –size +/-10c/k/M/G
+find /home –user xxx
+find /home -perm 777 查看权限文件
+find /root –amin十分钟 10
+find /root –mtime十天内 -10
+find /root –cmin十分钟前 +10 
+c表示文件属性被修改过，如：所有者、所在组、权限等。（ls -c）	
+a表示文件被访问过。(ls -u)
+m表示文件内容被修改过。(ls -t)
+5. 查找某种类型的文件
+find /etc  -type f普通文件
+find /etc  -type l软链接文件  
+find /etc  -type d目录文件 
+连接符：  
+find /root/Desktop –size +3M -a逻辑与 -size -5M
+find /root/Desktop –size +3M -o逻辑或 -size -5M
+find …… -exec    命令 {} \;
+find …… -ok(询问) 命令 {} \;
+find .–inum 64 –exec rm{} \;(从当前目录查找I节点为64180的文件并将其删除)
+uptime 时间显示
+date 显示当前时间
+cal 显示日历
+du 显示文件块
+xargs 传命令参数(列如:find . -name \*.js | xargs grep -i aa)
+sed 替换文件内容(例如:sed -i "s/aaa/bbb/g" `grep aaa -rl ./`)
+wc 显示文件字数
+
+
+
+★☆文件压缩命令☆★
+gzip 只能压缩文件不能压缩目录，不保留原文件
+gunzip/(gzip -d) 解压zip文件
+bzip2 也只能压缩文件不能压缩目录，加-k后可以保留原文件(压缩比高)
+bunzip2 解压文件
+tar 新名 文件名 打包(目录)成文件，可以保留原文件
+tar -c 产生tar打包文件
+tar -v 查看详细信息
+tar -f 指定生产文件名
+tar -r 追加文件
+tar -A 追加包
+tar -t 查看包中文件
+tar -z 打包后压缩为gz文件
+tar -j 打包后压缩为bz2文件
+tar -x 解包
+zip 新名 文件名 打包多个文件，可以保留文件
+zip -r 打包目录
+zip -m 打包后删除原文件
+unzip 解压文件或目录
+rar a 添加文件
+unrar x/e 解压文件
+
+
+
+★☆用户及组命令☆★
+添加用户: useradd [-u指定uid] [-g指定用户所属组] [-G指定用户所属附加组] [-d指定用户目录] [-m创建主目录] [-s指定用户登入得Shell，一般/bin/bash] 用户(自动创建用户名组)
+设置密码:passwd 用户名
+删除用户:userdel 用户名
+删除用户及用户主目录:userdel –r 用户名
+用户信息文件:more/etc/passwd
+格式:  用户名:密码:uID:gID::目录:shell解析器
+修改密码 /etc/passwd或者/etc/shadow
+etc/skel密码文件
+快速添加用户
+1.导入用户 编辑/etc/passwd
+2.取消shadow passwd功能 pwunconv
+3.导入密码文件chpasswd < pw.info
+4.开启shadow passwd功能 pwconv
+
+添加组: groupadd [-g] 组名
+删除组: groupdel 组名
+修改组：groupmod -n/g 新组名 旧组名
+组信息文件: more /etc/group
+添加用户时指定缺省组: useradd -g 组名 用户名
+用户改变所属组 usermod -g 组名 用户名
+用户改变所有组(注意使用) usermod -G 组名 用户名
+用户添加组 usermod -a -G 组名 用户名
+添加组内用户 gpasswd -a 用户名 组名
+删除组内用户 gpasswd -d 用户名 组名
+设置组管理员 gpasswd -A 组名 用户名
+修改组密码 /etc/gshadow
+删除组密码 gpasswd -r 组名
+临时切换组 newgrp 组名(需密码)
+查看用户所有组 groups[用户名]
+
+chmod [-R] xxx(数字) 文件名
+修改该文件的所有者(-R递归里面所有文件)
+chmod [-R] u/g/o+r/w/x 文件名
+chown [-R] 用户名 文件名(修改文件拥有者)
+chgrp [-R] 组名 文件名(修改文件所在的组)
+SetUID 4 u+s
+SetGID 2 g+s
+Sticky 1 o+t
+
+id 显示用户所在组
+修改用户名 usermod -l 新用户名 原用户名
+指定用户id usermod -u id名 用户
+修改指定用户目录 usermod -d 指定目录 用户名
+指定失效时间 usermod -e 
+
+ACL权限设置
+查看ACL权限 getfacl 文件名
+设置ACL权限 setfacl [-d默认权限] [-m格式] user|group|other:名字:rwx 文件名
+删除ACL权限 setfacl -b 文件名
+
+su 用户名
+su - 用户名(同时改变环境)
+锁定用户 passwd -l 用户名/usermod -L 用户名
+解锁用户 passwd -u 用户名 或者 usermod -U 用户名
+who/w（详细） 显示用户登录状态
+whoami显示用户名
+who am i显示用户状态
+/etc/ ?
+umask 掩码值(新创建文件权限=777[非目录为666]-umask,权限减非数字减)
+登入时显示信息 /etc/motd
+
+用户授权
+配置文件sudoers
+编辑配置文件visudo
+格式 用户名(%组名) 主机地址=命令的绝对路径
+用户使用sudo
+sudo -l 查看当前用户以root省份执行的命令
+
+
+★☆网络命令☆★
+网络配置文件
+setup需重启后生效
+/etc/rc.d/init.d/network restart或者service network restart
+立即生效但重启后失效
+(1)ifconfig eth0 x.x.x.x
+(2)ifconfig eth0 x.x.x.x netmask y.y.y.y
+需重启后生效
+修改/etc/sysconfig/network-scripts/ifcfg-eth0
+重启服务生效
+修改/etc/network/interfaces
+设置DNS
+修改DNS /etc/resolvconf/resolv.conf.d/base或head或tail
+查看DNS /etc/resolv.conf
+brctl addbr bridge0 添加网卡
+brctl delbr bridge0 删除网卡
+ifconfig bridge0 192.168.227.1 netmask 255.255.255.0 配置网卡信息
+ifdown eth0 关闭eth0网卡(或ifconfig eth0 down)
+ifup eth0 开启eth0网卡(或ifconfig eth0 up)
+ifconfig -a 查看所有网卡信息
+service --status-all 查看所有服务状态("+"started|"-"stopped|"?"unknown)
+监控网络信息
+netstat 显示所有网络情况
+netstat -rn 
+netstat anp | grap * 显示*网络情况
+ping * 测试网络连通性
+nslookup * 解析域名地址
+traceroute * 查看路由
+write 向另外一个用户发信息
+wall 向所有用户广播信息
+
+
+★☆任务调度命令☆★
+设置任务调度文件： /etc/crontab
+设置个人任务调度   执行crontab –e命令
+接着输入任务到调度文件
+
+
+★☆进程控制与管理☆★
+ps 显示进程
+ps -e/A  显示当前终端所有进程信息
+ps -f 详细显示
+ps -u  以用户的格式显示进程信息
+ps -x  显示后台进程运行的参数
+ps -U 命令列表
+kill -k显示终止程序信号列表
+(常用的kill信号
+SIGHUP 1 挂起 
+SIGINT 2 从键盘中断 
+SIGKILL 9 杀死信号 
+SIGTERM 15 中止信号 
+SIGSTOP 17,19,23 停止)
+top 动态监控进程
+u 监视特定用户
+k 终止指定的进程
+top -d 10指定系统状态更新的时间
+jobs 查看作业
+fg %n 前台恢复
+bg %n 后台恢复
+stop %n 暂停
+kill %n 杀死
+Ctrl+c 关闭
+Ctrl+z 挂起暂停
+
+
+
+★☆vi编辑命令☆★
+a 后插入 A行尾后插入
+i 前插入 I行首后插入
+o 下行前插入 O上行前插入
+nu 暂时显示行段
+:set nu 显示行段
+:set nonu 不显示行段
+gg 跳至首行 G跳至尾行
+nG或:n 定位至n行
+0 行首 $行尾       
+x 删除一个字符
+nx 删除n个字符
+dd或D 删除本行
+dG 删除本行以下行
+:n1,n2d 定位删除行
+yw复制单词
+yy或Y 复制本行
+nyy或nY 复制本行以下n行
+dd 剪切本行
+ndd 剪切本行以下n行
+p或P 粘贴至下行(上行)
+:1,20co3复制行1到行20在行3之后
+:3,5m6移动行3到行5到行6之后
+u 撤销
+Ctrl+r重复上一个动作
+r 替换一个字符
+R 连续替换
+cw 替换一个单词
+cc 替换一行
+C 替换从光标至行尾
+:wq存盘退出（或ZZ,或:x）
+～改变大小写
+J 合并下一行
+/xxx 向下查找
+？xxx向上查找
+:1,$s/old/new/g 全文替换(或:%s/old/new/g)
+:n1,n2s/old/new 定行替换
+
+
+
+★☆控制台命令☆★
+1.删除
+1.1 ctrl + d 删除光标所在位置上的字符相当于VIM里x或者dl
+1.2 ctrl + h 删除光标所在位置前的字符相当于VIM里hx或者dh
+1.3 ctrl + k 删除光标后面所有字符相当于VIM里d,shift+$
+1.4 ctrl + u 删除光标前面所有字符相当于VIM里d,shift+^
+1.5 ctrl + w 删除光标前一个单词相当于VIM里db
+1.6 ctrl + y 恢复ctrl+u上次执行时删除的字符
+1.7 ctrl + ? 撤消前一次输入
+1.8 alt + r 撤消前一次动作
+1.9 alt + d 删除光标所在位置的后单词
+2.移动
+2.1 ctrl + a 将光标移动到命令行开头相当于VIM里shift+^
+2.2 ctrl + e 将光标移动到命令行结尾处相当于VIM里shift+$
+2.3 ctrl + f 光标向后移动一个字符相当于VIM里l
+2.4 ctrl + b 光标向前移动一个字符相当于VIM里h
+2.5 ctrl + 方向键左键 光标移动到前一个单词开头
+2.6 ctrl + 方向键右键 光标移动到后一个单词结尾
+2.7 ctrl + x 在上次光标所在字符和当前光标所在字符之间跳转
+2.8 在vim中的命令输入模式中，输入gg，可以快速跳转到文件开头
+2.9 在vim中的命令输入模式中，输入GG，可以快速跳转到文件结尾
+3.0 在vim中返回上一个的编辑的位置，在输入命令模式使用 ctrl+o
+3.1 在vim中返回下一个的编辑的位置，在输入命令模式使用 ctrl+i
+3.统计
+3.1 例如在vim中统计某个字符串的数量，可以使用命令
+:%s/Name//gn
+
+
+
+★☆系统安装☆★
+dd [OPERAND]
+参数:
+if =输入文件(或设备名称)。
+of =输出文件(或设备名称)。
+ibs = bytes 一次读取bytes字节，即读入缓冲区的字节数。
+skip = blocks 跳过读入缓冲区开头的ibs*blocks块。
+obs = bytes 一次写入bytes字节，即写 入缓冲区的字节数。
+bs = bytes 同时设置读/写缓冲区的字节数(等于设置obs和obs)。
+cbs = bytes 一次转换bytes字节。
+count = blocks 只拷贝输入的blocks块。
+conv = ASCII 把EBCDIC码转换为ASCII码。
+conv = ebcdic 把ASCII码转换为EBCDIC码。
+conv = ibm 把ASCII码转换为alternate EBCDIC码。
+conv = blick 把变动位转换成固定字符。
+conv = ublock 把固定们转换成变动位
+conv = ucase 把字母由小写变为大写。
+conv = lcase 把字母由大写变为小写。
+conv = notrunc 不截短输出文件。
+conv = swab 交换每一对输入字节。
+conv = noerror 出错时不停止处理。
+conv = sync 把每个输入记录的大小都调到ibs的大小(用ibs填充)。
+fdformat命令
+实例:
+1.创建一个100M的空文件
+dd if=/dev/zero of=hello.txt bs=100M count=1
+2.写入u盘
+sudo dd if=./ubuntu-14.04-beta2-desktop-amd64.iso	of=/dev/sdb1【u盘】
+
+
+★☆分辨率设置☆★
+xrandr 查看当前显示器分辨率
+cvt 1920 1080 显示1920*1080信息如下
+# 1920x1080 59.96 Hz (CVT 2.07M9) hsync: 67.16 kHz; pclk: 173.00 MHz
+Modeline "1920x1080_60.00"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+xrandr --newmode "1920*1080" 173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync 添加分辨率信息
+xrandr --addmode VGA1 1920*1080
+xrandr --rmmode 1920*1080
+xrandr --output VGA1 --mode 1920*1080 设置分辨率
+xrandr --delmode VGA1 1920*1080
+
+
+★☆ubuntu软件命令☆★
+sudo apt-get install *** 安装软件
+sudo apt-get install *** -- reinstall 重新安装软件
+sudo apt-get remove *** 删除软件
+sudo apt-get remove *** -- purge *** 删除软件包括配置文件
+sudo apt-get update 更新源
+sudo apt-get upgrade 更新已安装软件
+sudo apt-get dist-upgrade 升级系统
+sudo apt-get dselect-upgrade 使用dselect升级
+apt-cache depends *** 了解使用依赖
+apt-get source *** 下载该包的源代码
+sudo apt-get clean && sudo apt-get autoclean 清理无用的包
+sudo apt-get check 检查是否有损坏的依赖
+
+dpkg -i ***.deb 安装软件包
+dpkg -l 列出所有软件包
+dpkg --get-selections *** 查看软件包
+dpkg --list | grep *** 查看详细软件包
+dpkg -r *** 删除软件
+dpkg -P *** 删除软件包括配置文件
+dpkg -L *** 列出与该软件关联的文件
+dpkg --purge *** 移除软件包
+dpkg -unpack ***.deb
+dpkg -c ***.deb 列出包内容
+dpkg -S *** 从所有软件包中寻找***文件
+dpkg -s *** 查看是否安装该软件包
+
+
+★☆centos（或unix）软件命令☆★
+rpm –ivh RPM包全路径名称
+rpm –Uvh 新版本软件包
+参数说明：
+i = install
+v= verbose 提示
+h= hash 进度条
+安装选项
+ --excludedocs 软件包    不安装软件包中的文档文件
+ --prefix PATH  将软件包安装到由PATH指定的路径下
+ --test 只对安装进行测试，并不实际安装
+           测试依赖关系，是否安装等
+ --replacepkgs 覆盖安装
+ --replacefiles 文件冲突，覆盖安装
+ --nodeps 忽略依赖性，强行安装
+RPM常用命令
+rpm –qa  :查询所有安装过的rpm软件
+rpm –q 软件包名  :查询某个软件包是否安装过
+rpm –qi 软件包名  :查询软件包信息
+rpm –ql 软件包名  :查询软件包中的文件信息
+rpm –qf 文件全路径名  :查询文件所属的软件包
+rpm –qip 包文件名  :查询包的信息(对这个包的介绍,改该软件包未安装到系统中)
+rpm –qd 帮助文档位置
+rpm –qc 定位配置文件
+rpm –e  软件名称  :卸载软件包
+rpm –e –nodeps
+软件包中文件提取
+rpm2cpio    xxxx | cpio –idv ./xxx/xxx
+rpm –V 软件包名
+5 文件MD5值改变
+S 文件大小改变
+L 链接文件
+T 文件创建时间改变
+D 设备文件
+U 文件所有者改变
+G 文件所在组改变
+M 文件的权限改变
+YUM包
+YUM可以自动解决软件包依赖关系，方便的软件包升级
+*****需要联网*****
+安装 yum install  软件包名
+检测升级 yum check-update  软件包名
+升级 yum update 软件包名
+查询可用软件包 yum list
+软件包信息 yum info 软件包名 
+卸载  yum remove 软件包名
+
+
+
+
+
+
+
+
+
+
+
+
+

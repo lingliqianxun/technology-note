@@ -1,0 +1,58 @@
+1.安装
+安装于virtualenv中:
+pip install redis
+pip install hiredis(需系统安装python3-pip)
+pip install django-redis-cache
+安装于系统中:
+sudo apt-get install redis-server
+
+2.服务
+sudo service redis-server [start启动|restart重启|stop停止]
+redis-server 启动服务
+redis-cli shutdown 关闭服务
+
+
+3.基本命令
+set 设置变量
+get 获取变量
+info 服务器信息
+flushdb 清空当前数据库
+flushall 清除所有数据库
+quit 退出连接
+
+4.测试&连接:
+测试:
+进入python
+>>> import redis
+>>> r = redis.StrictRedis(host='localhost', port=6379, db=0)
+>>> r.set('foo', 'bar')
+True
+>>> r.get('foo')
+'bar'
+
+连接:
+$ telnet localhost 6379
+Trying 127.0.0.1...
+Connected to localhost.
+Escape character is '^]'.
+
+5.配置Django
+在项目的settings.py中增加中间件和修改
+CACHES = { 
+    'default': {
+        'BACKEND': 'redis_cache.RedisCache',
+        'LOCATION': '127.0.0.1:6379',
+        'OPTIONS': {
+            'DB': 0,
+            'PASSWORD':'',
+            'PARSER_CLASS': 'redis.connection.HiredisParser',
+            'CLIENT_CLASS': 'redis_cache.client.DefaultClient',
+            #'CONNECTION_POOL_CLASS': 'redis.BlockingConnectionPool',
+            #'CONNECTION_POOL_CLASS_KWARGS': {
+            #    'max_connections': 50,
+            #    'timeout': 20,
+            #}  
+        }   
+    }   
+}
+

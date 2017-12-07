@@ -1,0 +1,4 @@
+alias qq='~/.wine/drive_c/"Program Files (x86)"/Tencent/QQ/Bin/QQ.exe'
+alias kqq="ps -ef |grep QQ| awk '{print \$2}' |xargs kill -9"
+alias rm='trash-put'
+

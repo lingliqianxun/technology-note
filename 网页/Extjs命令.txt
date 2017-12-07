@@ -1,0 +1,30 @@
+类写法
+MyCompany.form.action.AutoLoad
+MyCompany.AutoLoad
+变量写法
+isGoodName
+httpServer
+老定义写法
+Ext.ns('My.cool');//Ext.namespace (别名 Ext.ns )
+My.cool.Window = Ext.extend(Ext.Window, { ... });
+新定义写法
+Ext.application({name:''，launch:function(){...}});
+或Ext.onReady(function(){...});
+Ext.define(className, members, onClassCreated);
+Ext.create(className, nameSpace);
+
+
+
+
+三大类
+基本组件、工具栏组件、表单及元素组件
+
+布局
+Anchor布局
+Border区域布局
+Column列布局
+Fit填充布局
+Form表单布局
+Accordion折叠布局
+Table表格布局
+Card向导试布局

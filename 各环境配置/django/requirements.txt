@@ -1,0 +1,9 @@
+Django
+django-filter
+djangorestframework
+pip
+psycopg2
+setuptools
+#可下载但无法临时安装
+#python3-memcached
+pycrypto

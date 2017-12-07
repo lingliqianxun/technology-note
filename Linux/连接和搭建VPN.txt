@@ -1,0 +1,62 @@
+连接VPN
+
+1.安装
+sudo apt-get install pptp-linux
+2.添加/删除
+sudo pptpsetup --create test --server seattle.vpn.wormholelab.com --user lingliqianxun@aliyun.com7 --password hujun1234# --encrypt --start
+后会自动生成/etc/ppp/peers/文件目录下
+sudo pptpsetup --delete test
+3.开启/关闭
+pon test
+poff test
+4.添加/删除路由
+sudo route add default dev ppp0
+sudo route del default dev ppp0
+单向
+sudo route add default gw 10.10.10.1
+sudo route del default gw 10.10.10.1
+
+
+
+搭建VPN
+
+1.安装PPTPD
+sudo apt-get install pptpd
+
+2.编辑pptpd.conf文件
+sudo vi /etc/pptpd.conf
+取消注释下面内容
+localip 192.168.0.1   #此为服务器ip
+remoteip 192.168.0.234-238,192.168.0.245    #此为分配用户ip
+
+3.设置DNS解析，编辑pptpd-options文件
+sudo vi /etc/ppp/pptpd-options
+找到ms-dns，取消掉注释，并修改DNS地址，这里我推荐大家用Google DNS 
+ms-dns 8.8.8.8
+ms-dns 8.8.4.4
+
+4.添加用于登陆的账户
+sudo vi /etc/ppp/chap-secrets
+格式如下：
+用户名 pptpd "密码" *
+
+5.重新启动服务
+sudo /etc/init.d/pptpd restart
+
+
+或许需要以下操作！
+6、开启转发
+sudo vi /etc/sysctl.conf
+取消注释以下内容，用户打开内核IP转发
+net.ipv4.ip_forward=1
+重启
+sudo sysctl -p
+
+7、安装iptables并设置,让客户端上网
+sudo apt-get install iptables
+立刻让LINUX支持NAT(platinum)
+iptables -t nat -I POSTROUTING -j MASQUERADE
+添加
+sudo iptables -t nat -A POSTROUTING -s 10.1.1.0/24 -o p2p1 -j MASQUERADE
+查看
+sudo iptables --table nat -L POSTROUTING

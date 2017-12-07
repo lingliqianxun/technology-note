@@ -1,0 +1,5 @@
+001 lisa 1 1000
+002 tom 12345 3700
+003 jack 123456 900
+005 hu1 123 100
+admin admin admin 0

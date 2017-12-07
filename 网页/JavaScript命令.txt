@@ -1,0 +1,32 @@
+<script src="code-guide.js">...</script>
+alert("...")
+var 变量名=new Array() 声明数组变量
+function 函数名(参数){...} 声明函数
+try{...}catch(err){...} 抛出异常
+
+document.write("..."); 显示
+DOM 方法
+getElementById(id) - 获取带有指定 id 的节点（元素）
+getElementsByTagName(name) - 获取带有指定标签名称的所有元素的节点列表（集合/节点数组）。
+getElementsByClassName(class) - 获取带有指定类名的所有元素的节点列表。
+appendChild(node) - 插入新的子节点（元素）
+removeChild(node) - 删除子节点（元素）
+replaceChild(node) - 替换子节点。
+insertBefore(node) - 在指定的子节点前面插入新的子节点。
+createAttribute() - 创建属性节点。
+createElement() - 创建元素节点。
+createTextNode() - 创建文本节点。
+getAttribute(node) - 返回指定的属性值。
+setAttribute(node) - 把指定属性设置或修改为指定的值。
+
+DOM 属性
+innerHTML - 节点（元素）的文本值
+parentNode - 节点（元素）的父节点
+childNodes - 节点（元素）的子节点
+attributes - 节点（元素）的属性节点
+
+DOM事件
+onload和onunload
+onchange
+onmouseover和onmouseout
+onmousedown、onmouseup 以及 onclick 事件

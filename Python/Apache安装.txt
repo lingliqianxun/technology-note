@@ -1,0 +1,14 @@
+自动安装
+sudo apt-get install apache2
+
+手动安装
+1.pcre安装
+2.下载apr并configure
+3.下载apr-util并configure
+4.下载apache并configure --with-apr=/.. --with-apr-util=/..
+
+虚拟主机
+1.添加文件到/etc/apache2/sites-available/xxx.conf
+2.sudo [a2ensite开启|a2dissite关闭] xxx.conf
+3.sudo service apache2 reload(如果apache运行中)
+4.sudo service apache2 restart

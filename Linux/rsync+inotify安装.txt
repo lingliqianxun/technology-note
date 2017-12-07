@@ -1,0 +1,78 @@
+1.安装rsync(一般系统自带)
+sudo apt-get install rsync
+
+2.服务端配置
+拷贝样例
+sudo cp /usr/share/doc/rsync/examples/rsyncd.conf /etc/
+配置rsyncd.conf
+sudo vi /etc/rsyncd.conf
+添加并修改rsyncd.secrets权限
+sudo chmod 600 /etc/rsyncd.secrets
+启动rsync
+sudo rsync --daemon
+
+3.客户端配置
+添加并修改rsyncd.pass权限(可非root)
+sudo chmod 600 /etc/rsyncd.pass
+执行
+sudo rsync -vzrtopg --delete --exclude "logs/" --progress backup@202.99.11.120::modu_name /opt/test --password-file=/etc/rsyncd.pass
+
+
+
+1.安装inotify-tools
+sudo apt-get install inotify-tools
+
+2.两个命令
+inotifywait:用于等待文件或文件集上的一个特定事件，它可以监控任何文件和目录设置，并且可以递归地监控整个目录树。
+inotifywatch:用于收集被监控的文件系统统计数据，包括每个inotify事件发生多少次等信息
+
+3.inotifywait参数
+-m， 即--monitor，表示始终保持事件监听状态。
+-r， 即--recursive，表示递归查询目录。
+-q， 即--quiet，表示打印出监控事件。
+-e， 即--event，通过此参数可以指定要监控的事件，常见的事件有modify、delete、create、attrib等
+
+4.配置文件
+/proc/sys/fs/inotify/
+max_queued_events：inotify队列最大长度，如果值太小，会出现"** Event Queue Overflow **"错误，导致监控文件不准确
+max_user_watches：要同步的文件包含多少目录，可以用：find /home/test/ -type d | wc -l 统计，必须保证max_user_watches值大于统计结果（这里/home/test/为同步文件目录）
+max_user_instances：每个用户创建inotify实例最大值
+
+修改inotify相关配置(root用户使用echo方式)：
+echo 1638400 > /proc/sys/fs/inotify/max_queued_events
+echo 12800 > /proc/sys/fs/inotify/max_user_instances
+echo  819200  > /proc/sys/fs/inotify/max_user_watches
+
+5.监听
+inotifywait -mrq --timefmt '%d/%m/%y %H:%M' --format '%T %w%f%e' -e close_write,modify,delete,create,attrib,move /opt/test/
+
+
+事例：rsync+inotify脚本
+
+#!/bin/bash
+
+srcdir=/home/hujun/test/
+
+/usr/bin/inotifywait -mrq --timefmt '%d/%m/%y %H:%M' --format '%T %w%f%e' -e close_write,modify,delete,create,attrib,move $srcdir |  while read file
+do
+rsync -vzrtopg $srcdir --delete hujun@10.1.1.8::ftp  --password-file=/home/hujun/a.txt
+echo "${file} was rsynced" >> /tmp/rsync.log 2>&1
+done
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+附加：
+sudo apt-get intall unison
+

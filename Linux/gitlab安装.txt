@@ -1,0 +1,44 @@
+参考：https://hub.docker.com/r/sameersbn/gitlab/
+
+1.下载gitlab和redis镜像
+docker pull sameersbn/gitlab:latest
+docker pull sameersbn/redis:latest
+
+2.仅安装postgresql客户端
+sudo apt-get install postgresql-client-common
+
+3.创建文件夹
+mkdir -p /opt/gitlab/data
+
+4.创建GITLAB_SECRETS_DB_KEY_BASE
+sudo apt-get install pwgen
+pwgen -Bsv1 64
+
+4.运行redis
+docker run --name=redis -d sameersbn/redis:latest
+
+5.运行gitlab
+docker run --name=gitlab -d --link redis:redisio \
+  -e 'GITLAB_HOST=10.1.1.8' \
+  -e 'GITLAB_PORT=10080' \
+  -e 'GITLAB_SSH_PORT=10022' \ 
+  -e 'GITLAB_BACKUPS=monthly' \
+  -e 'DB_TYPE=postgres' \
+  -e 'DB_HOST=10.1.1.8' \
+  -e 'DB_NAME=gitlab' \
+  -e 'DB_USER=hujun' \
+  -e 'DB_PASS=123456' \
+  -e 'GITLAB_SECRETS_DB_KEY_BASE=fbPhHVdMXHTr9bKTxRpHzVKWrztrVHdRc9vkJ3R79RxtkRp3VR9VVFJfpnjccdkJ' \
+  -p 10022:22 -p 10080:80 \
+  -v /opt/gitlab/data:/home/git/data \
+  -v /var/run/docker.sock:/run/docker.sock \
+  sameersbn/gitlab:8.0.2
+  # 可设置redis
+  -e 'REDIS_HOST=192.168.3.100' \
+  -e 'REDIS_PORT=6402' \
+
+
+
+
+
+

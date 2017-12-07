@@ -1,0 +1,14 @@
+配置普通HTTP正向代理
+
+安装	
+sudo apt-get install squid
+配置 squid3
+sudo vim /etc/squid3/squid.conf
+搜索此句
+http_access deny all
+修改为
+http_access allow all
+启动/重启squid3
+sudo service squid3 restart
+
+注意： squid的http默认代理端口为 3128

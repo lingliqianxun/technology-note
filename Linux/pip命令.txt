@@ -1,0 +1,51 @@
+# pip --help
+
+Usage:
+  pip <command> [options]
+
+Commands:
+  install                     安装软件.
+  uninstall                   卸载软件.
+  freeze                      按着一定格式输出已安装软件列表
+  list                        列出已安装软件.
+  show                        显示软件详细信息.
+  search                      搜索软件，类似yum里的search.
+  wheel                       Build wheels from your requirements.
+  zip                         不推荐. Zip individual packages.
+  unzip                       不推荐. Unzip individual packages.
+  bundle                      不推荐. Create pybundles.
+  help                        当前帮助.
+
+General Options:
+  -h, --help                  显示帮助.
+  -v, --verbose               更多的输出，最多可以使用3次
+  -V, --version               现实版本信息然后退出.
+  -q, --quiet                 最少的输出.
+  --log-file <path>           覆盖的方式记录verbose错误日志，默认文件：/root/.pip/pip.log
+  --log <path>                不覆盖记录verbose输出的日志.
+  --proxy <proxy>             Specify a proxy in the form [user:passwd@]proxy.server:port.
+  --timeout <sec>             连接超时时间 (默认15秒).
+  --exists-action <action>    Default action when a path already exists: (s)witch, (i)gnore, (w)ipe, (b)ackup.
+  --cert <path>               证书.
+
+
+其它查帮助（样例）:
+pip list -h 查看指定命令帮助
+pip list --outdated 查看待更新软件 
+pip show --files SomePackage 查看已安装的软件
+
+搭建本地PYPI
+1.mkdir /pypi 建立存放目录
+2.sudo pip install pip2pi
+3.sudo apt-get install postgresql-server-dev-9.x
+4.pip2pi -n /pypi -r ./requirements.txt 批量下载并更新索引
+可分步：
+【
+pip2tgz /pypi -r ./requirements.txt 批量下载
+dir2pi /pypi ###对pypi目录下的所有软件包建立索引
+】
+5.vim ~/.pip/.pip.conf 配置使用新搭建的pypi源
+[global]
+index-url = http://your_host_ip/pypi/simple
+
+

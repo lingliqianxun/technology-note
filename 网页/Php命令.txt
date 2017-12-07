@@ -1,0 +1,50 @@
+<?php...?>格式
+$ 声明变量
+$global[index] 全局变量
+local 局部变量
+static 静态变量
+define("CONSTANT","value",FALSE[默认])定义常量
+
+超全局变量：
+$GLOBALS
+$_SERVER - 保存关于报头、路径和脚本位置的信息
+$_REQUEST - 收集 HTML 表单提交的数据
+$_POST - 广泛用于收集提交 method="post" 的 HTML 表单后的表单数据，也常用于传递变量
+$_GET - 也可用于收集提交 HTML 表单 (method="get") 之后的表单数据，也可以收集 URL 中的发送的数据
+$_FILES
+$_ENV
+$_COOKIE
+$_SESSION
+
+echo 能够输出一个以上的字符串
+print 只能输出一个字符串，并始终返回 1
+
+//、/**/、# 注释
+&#92 特殊字符
+‘’ 字符串
+“” 解析变量
+
+. 字符串连接
+or(||) 或
+and(&&) 与
+xor 异或
+
+if..elseif..else
+array() 
+索引数组 - 带有数字索引的数组
+关联数组 - 带有指定键的数组
+多维数组 - 包含一个或多个数组的数组
+count() 获取数组长度
+foreach ($array as $value) 遍历数组
+$a=array{"23","1"};
+sort($a) - 以升序对数组排序
+rsort() - 以降序对数组排序
+asort() - 根据值，以升序对关联数组进行排序
+ksort() - 根据键，以升序对关联数组进行排序
+arsort() - 根据值，以降序对关联数组进行排序
+krsort() - 根据键，以降序对关联数组进行排序
+
+function 定义函数
+include("") 包含其他文件
+require("") 会错误处理
+header("Content-Type: text/html;charset=utf-8"); 设置utf-8格式

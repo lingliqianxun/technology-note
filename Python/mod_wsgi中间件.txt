@@ -1,0 +1,40 @@
+1.sudo apt-get install apache2
+2.sudo apt-get install libapache2-mod-wsgi 
+  sudo apt-get install libapache2-mod-wsgi-py3
+3.查看mod_wsgi是否安装成功，找文件/usr/lib/apache2/modules/mod_wsgi.so
+4.部署apache新开端口、django restful开启wsgi、path路径、auth认证、静态文件路径等.
+
+
+测试:
+hello.py文件
+def application(environ, start_response):
+    status = '200 ,ok'  
+    output = 'Hello World!'  
+    response_headers = [('Content-type', 'text/plain'),  
+       ('Content-Length', str(len(output)))]  
+    start_response(status, response_headers)  
+    return [output]
+
+server.py文件
+#!/home/hujun/project/hive/bin/python
+# server.py
+from wsgiref.simple_server import make_server
+from hello import application
+
+
+import os
+import sys
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'hive.settings'
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()
+
+#root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+#sys.path.insert(0, os.path.abspath(os.path.join(root_path, 'hive')))
+#sys.path.insert(0, root_path)
+#sys.path.insert(0, os.path.abspath(os.path.join(root_path, 'lib/python3.4/site-packages/')))
+
+
+httpd = make_server('', 8000, application)
+print ("Serving HTTP on port 8000...")
+httpd.serve_forever()

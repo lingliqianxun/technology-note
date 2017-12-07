@@ -1,0 +1,20 @@
+1.sudo vi /etc/apt/sources.list.d/pgdg.list
+deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main 9.6
+
+2.sudo apt-get update
+
+3.sudo apt-cache search postgresql | grep postgresql
+
+4.pg_dumpall > back.sql
+
+5.sudo service postgresql stop
+
+6.sudo apt-get install postgresql
+
+7.sudo apt-get install postgresql-9.6
+
+8.select version();
+
+9.dpkg --list | grep postgresql
+
+10.数据库改端口

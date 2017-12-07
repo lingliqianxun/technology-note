@@ -1,0 +1,9 @@
+1.安装tomcat6和jdk
+sudo apt-get -y install default-jdk
+sudo apt-get -y install tomcat6
+
+2.导入环境变量
+export JAVA_HOME=/usr/java/jdk1.6.0_45
+export PATH=$JAVA_HOME/bin:$PATH
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+

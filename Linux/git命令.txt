@@ -1,0 +1,58 @@
+生成公私钥 ssh-keyscan
+配置用户信息
+git config --global user.name "[name]"
+git config --global user.email [name]
+git config --global core.editor [name]
+别名 git config --global alias.[a-name] '[name]'
+查看配置信息 git config --list
+获取帮助 git help [name]
+初始化 git init
+添加文件 git add [name]
+忽略某些文件配置.gitignore
+删除文件 git rm [name]
+移动文件 git mv [old_name] [new_name]
+查看提交历史 git log [-p详细 --stat摘要 -2数量]
+查看引用日志 git reflog
+撤消操作 git commit --amend
+取消已经暂存的文件 git reset [name]
+取消对文件的修改 git checkout [name]
+检查当前文件状态 git status
+查看暂存前后的变化 git diff
+查看暂存起来的变化 git diff --cached
+暂存缓存 git stash
+恢复缓存 git stash apply
+提交 git commit
+提交无需add操作时 git commit -a
+
+查看当前分支的历史状态 git show [HEAD信息 HEAD^或HEAD~1父信息 HEAD^^或HEAD~2父父信息]
+回退到指定版本，清除该版本之后所有的信息 git reset --hard [HEAD信息 HEAD^或HEAD~1父信息 HEAD^^或HEAD~2父父信息]
+
+获取仓库文件 git clone [url](例如:git@10.1.1.8:~/breadtalk.git)
+生成原始仓库 git clone --bare [git_dir] [git_name]
+查看仓库文件 git remote [-v显示对应克隆地址]
+查看远程仓库信息 git remote show [remote-name]
+添加远程仓库 git remote add [shortname] [url](例如:ssh://git@10.1.1.8:10022/backend/hive.git)
+删除远程仓库 git remote rm [shortname]
+重命名远程仓库 git remote rename [oldname] [newname]
+从远程仓库抓取数据 git fetch [reomote-name]
+推送数据到远程仓库 git remote push [remote-name] [local-branch-name]:[ssh-branch-name]
+删除远程分支 git push [remote-name] :[ssh-branch-name]
+
+查看分支 git branch
+查看分支最后情况 git branch -v
+创建分支 git branch [branch-name]
+切换分支 git checkout [branch-name]
+创建分支并立即切换 git checkout -b [branch-name]
+删除分支 git branch -d [branch-name]
+合并分支 git merge [branch-name]
+查看哪些分支已被并入当前分支 git branch [--merged|--no-merged]
+衍合two分支到base分支 git rebase --onto [base-branch] [one-branch] [two-branch]
+
+显已有的标签 git tag
+添加轻量级标签 git tag [name]
+添加其他标签 git tag [-a附注 -s签署] [name] -m '[namedescrib]'
+验证标签 git tag -v [tag-name]
+删除标签 git tag -d [name]
+添加到远程标签 git push origin [tagname](或--tags所有标签)
+删除到远程标签 git push origin :refs/tags/[tagname]
+

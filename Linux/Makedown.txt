@@ -1,0 +1,57 @@
+1.安装apache2
+sudo apt-get apache2
+重启Apache
+sudo /etc/init.d/apache2 restart
+
+2.安装mkdocs
+sudo apt-get install python-pip (或在virtualenv中使用pip)
+pip install mkdocs 
+下面两个用于主题
+pip install mkdocs-bootstrap
+pip install mkdocs-bootswatch
+
+3.制作文档工程框架
+mkdocs new 工程名
+查看服务
+mkdocs serve
+自动生成html文件
+mkdocs build --clean
+
+4.语法
+#测试# 
+#一号标题# 
+##二号标题##
+普通    
+**粗体**    
+*斜体*   
+>引用
+>>引用中的引用
+---    
+    分割线    
+---    
+    - 无序列表
+     + 嵌套
+      * 嵌套
+    - 无序列表
+    - 无序列表
+    1. 有序列表
+    2. 有序列表
+[文字连接](http://www.baidu.com)
+![图片连接](http://github.global.ssl.fastly.net/images/modules/logos_page/GitHub-Mark.png "GitHub Mark")
+[索引超链接][1]
+![图片超链接][2]
+[1]:http://www.baidu.com
+[2]:http://github.global.ssl.fastly.net/images/modules/logos_page/GitHub-Mark.png "GitHub Mark"
+<http://www.baidu.com>自动链接
+```scala
+var s="a"
+println(a)
+行内语言代码
+```
+    段落代码
+<!--注释--> 
+
+##表格
+序号 | Code   | 名称     | 类型  
+:--: | :----- | :------: | -----: 
+1    | 左对齐 | 居中对齐 | 右对齐 

@@ -1,0 +1,35 @@
+1.更新
+sudo apt-get install upgrade
+sudo apt-get install update
+2.火狐
+sudo apt-get remove firefox
+sudo apt-get install firefox
+安装adb广告过滤
+Ubuntu软件中心安装flash player
+导入书签
+3.安装rar
+sudo apt-get install rar
+sudo apt-get install unrar
+4.安装tmux
+sudo apt-get install tmux
+5.安装搜狗输入法
+教程http://pinyin.sogou.com/linux/help.php
+6.设置vi上下左右(由于vi不完整)
+sudo apt-get install vim-gtk
+后设置~/.vimrc或/etc/vim/vimrc
+7.设置删除功能
+sudo apt-get install trash-cli 
+后设置~/.bashrc中alias rm='trash-put'
+8.安装git
+sudo apt-get install git
+9.安装nginx
+sudo apt-get install nginx-core
+10.安装mkdocs
+sudo apt-get install python-pip
+pip install mkdocs 
+11.安装qq
+U麒麟下载
+12.安装postgresql
+13.搭建pi源
+#注：python3-memcached可下载但无法临时安装
+0 12 * * * /usr/local/bin/pip2pi -n /opt/pip/ -r /home/hujun/requirements.txt

@@ -1,0 +1,54 @@
+安装在系统中
+sudo apt-get update 更新源
+sudo apt-get install python-dev (用于2.0中缺少Python.h)
+sudo apt-get install python3-dev (用于3.0中缺少Python.h)
+sudo apt-get install postgresql-server-dev-9.3 (或9.4用于postgresql)
+sudo apt-get install python-pip(针对python2，或python3-pip针对pip3)
+sudo apt-get install python-django(用于外部)
+安装在virtualenv中如下(系统中需加python-)：
+pip (更新自己)
+Django
+django-filter
+djangorestframework
+psycopg2
+Markdown
+setuptools
+Pillow
+mkdocs
+python3-memcached
+
+命令
+django-admin.py startproject mysite 创建工程
+manage.py startapp books 创建app
+manage.py validate 校验Model的有效性
+manage.py sqlall books 生成创建数据库的schema
+manage.py makemigrations 生成Model
+manage.py migrate 同步Model到数据库
+manage.py migrate --fake 假同步Model到数据库
+manage.py syncdb 同步Model到数据库，并创建超级管理员
+manage.py runserver 10.1.1.8:8000 开启服务
+
+注意点：
+创建的app名字不要用关键字，通过wsgi连接识别不到
+null=True 数据库设置可为null，默认False
+blank=True dango内部字段可传空，默认False时，char类型传空则转为''
+default=0 django内部默认，但数据库不设置default属性
+save() 会记录get()所有字段后再存入数据库，最好使用select_for_update()或save(update_fields=['xx','xx'])
+datetime 不带时区的当前时间
+timezone 不带时区的UTC时间
+select_for_update() 为阻塞行锁模式
+CACHE_MIDDLEWARE_SECONDS 全局缓存时间默认为60s，需单独设置
+修改数据时create要在filter和update后面
+
+
+
+
+通信:HTTP、URL、请求、响应
+MVC（Model-View-Controller，模型【定义数据】-视图【定义显示方法】-控制器【二者之间】）
+^ 消除匹配的二义性
+$ 确保匹配最后
+{{...}} 变量
+{%...%} 标签
+| 过滤器
+
+

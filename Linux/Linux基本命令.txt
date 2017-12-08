@@ -86,9 +86,10 @@ pwd 显示当前工作目录
 
 ls -a 显示所有文件，包括隐藏文件
 ls -l 以列表形式显示详细信息
+ls -r 反向排序
 ls -R 遍历目录
 ls -t 节点时间顺序
-ls –d 查看目录本身的属性
+ls -d 查看目录本身的属性
 ls -F 显示文件类型
 ls -S按大小排序显示
 
@@ -156,9 +157,9 @@ find [搜索路径] [搜索关键字]find / -name “xxx(*或?)“（加”递�
 find /root –size +/-10c/k/M/G
 find /home –user xxx
 find /home -perm 777 查看权限文件
-find /root –amin十分钟 10
-find /root –mtime十天内 -10
-find /root –cmin十分钟前 +10 
+find /root -amin十分钟 10
+find /root -mtime十天内 -10
+find /root -cmin十分钟前 +10 
 c表示文件属性被修改过，如：所有者、所在组、权限等。（ls -c）	
 a表示文件被访问过。(ls -u)
 m表示文件内容被修改过。(ls -t)

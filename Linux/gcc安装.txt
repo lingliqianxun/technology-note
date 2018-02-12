@@ -1,0 +1,14 @@
+AIX（Unix）安装gcc
+
+
+一、下载
+http://www.bullfreeware.com
+搜索gcc下载对应版本
+
+二、安装
+rmp安装，必要时添加--nodeps解决依赖问题
+先安装gettext
+
+三、添加环境
+普通用户在~/.profile文件中添加
+export LIBPATH=/opt/freeware/lib:$LIBPATH

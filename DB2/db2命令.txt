@@ -1,0 +1,17 @@
+Unix下DB2命令
+
+db2 connect to ${DBNAME} user ${DBUSER} USING ${DBPSWD} 连接数据库
+db2 set current schema ${DBSCHEMA} 设置schema
+db2 terminate 断开连接数据库
+db2 commit 提交事务
+db2 reorg table ${DBNAME}
+db2 list database directory 显示远程数据库信息
+db2 list node directory 显示远程节点信息
+db2 catalog tcpip node ${NODENAME} remote ${IPADDRESS} server ${IPPORT} 创建连接远程节点
+db2 catalog db ${DBNAME} at node ${NODENAME} 编目远程节点数据库
+db2 uncatalog db ${DBNAME} 删除连接远程数据库
+db2 uncatalog node ${NODENAME} 删除连接远程节点
+db2 list packages 查看所有包
+db2bfd -bsv ${NAME}.bnd 查看绑定文件信息
+db2expln -g -t -d ${DBNAME} -c ${DBSCHEMA} -p ${8位PKGNAME} -version ${PKGVERSION} -s 0 查看绑定对应计划
+

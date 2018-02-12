@@ -15,10 +15,10 @@ tar -xvf vim-8.0.tar
 三、设置环境变量
 export CC=cc 配置编译器，可设置xlC_r、cc、gcc
 export OBJECT_MODE=64 配置系统位数32、64
-export CFLAGS=-qlanglvl=extc99
+export CFLAGS=-qlanglvl=extc99 配置额外参数，gcc设置-maix=64或不设置
 
 四、配置编译环境变量
-./configure --prefix=/usr/vim80/ --enable-multibyte --disable-gui --without-x --disable-xsmp --with-features=huge
+./configure --prefix=/opt/freeware/ --enable-multibyte --disable-gui --without-x --disable-xsmp --with-features=huge
 --prefix 自定义安装路径
 --enable-multibyte 可以使用encoding,fileecncodings等设置
 --disable-gui 不安装gui，因为安装可能报错
@@ -27,5 +27,8 @@ export CFLAGS=-qlanglvl=extc99
 make
 make install
 
-六、vimrc配置
+六、添加快捷命令
+ln -s /opt/freeware/bin/vim /usr/bin/vim
+
+七、vimrc配置
 语法高亮等设置share/vim/vim80/vimrc_example.vim替换~/.vimrc

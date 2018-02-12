@@ -1,0 +1,29 @@
+cc命令（可用c89、c99）
+
+-c 产生file.o
+-o 不指定则默认产生a.out
+-qcpluscmt C99规范编译
+-qinfo=use 显示警告等信息
+
+
+ar命令
+-t 显示静态库的内容
+-d 从库中删除成员文件
+-r 在库中加入成员文件，若存在，则替换
+-c 创建一个库
+-s 无论ar命令是否修改了库内容，都强制重新生成库符号表
+
+
+dbx命令
+dbx 运行文件 core.文件
+where 查看错误地方
+
+
+sudo slibclean 清除所有未被使用的动态库
+genkld 查看系统所有动态库
+dump -Tv {libname} 查看对应动态库的所有函数
+
+
+
+
+

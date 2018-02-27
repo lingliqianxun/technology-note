@@ -1,0 +1,27 @@
+window下py转exe工具
+
+一、安装
+pip install PyInstaller
+pip install pypiwin32
+
+UPX压缩工具：http://sourceforge.net/projects/upx/
+放入python安装目录
+
+二、命令
+pyinstaller -F -w -i i.ico test.pyw
+-F 生成一个文件
+-D 生成一个目录（默认）
+-K 包含TCL/TK
+-d debug模式的exe
+-w 等同--windowed,--noconsole窗体exe文件
+-c 等同--nowindowed,--console控制台exe文件
+-X 等同--upx使用upx压缩exe文件
+-o DIR 设置spec文件输出目录
+-i 加入图标
+-v FILE 加入版本信息文件
+
+
+
+注意：
+64位机打包后exe只在64位机运行
+32位机打包后exe可在32、64位机运行

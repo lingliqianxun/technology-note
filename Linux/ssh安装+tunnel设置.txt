@@ -1,4 +1,4 @@
-1.查看是否安装
+﻿1.查看是否安装
 ps -ef|grep ssh
 2.安装
 sudo apt-get install openssh-server
@@ -59,4 +59,5 @@ autossh设置
 sudo apt-get install autossh
 2.实例
 autossh -M 5678 
+
 

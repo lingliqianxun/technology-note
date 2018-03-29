@@ -1,4 +1,4 @@
-参考：https://hub.docker.com/r/sameersbn/gitlab/
+﻿参考：https://hub.docker.com/r/sameersbn/gitlab/
 
 1.下载gitlab和redis镜像
 docker pull sameersbn/gitlab:latest
@@ -36,6 +36,7 @@ docker run --name=gitlab -d --link redis:redisio \
   # 可设置redis
   -e 'REDIS_HOST=192.168.3.100' \
   -e 'REDIS_PORT=6402' \
+
 
 
 

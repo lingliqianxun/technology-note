@@ -1,10 +1,13 @@
-1.查看是否安装
+﻿1.查看是否安装
 ps -e|grep ssh
+
 2.安装
 sudo apt-get install openssh-server
-4.生产ssh个人公密钥
+
+3.生产ssh个人公密钥
 ssh-keygen
-3.配置文件～/.ssh文件夹下
+
+4.配置文件～/.ssh文件夹下
 config文件格式
 HOST dev 
     HostName    10.1.1.8 
@@ -12,4 +15,5 @@ HOST dev
 id_rsa文件为个人私钥
 id_rsa.pub文件为个人公钥
 authorized_keys文件为认证公钥
+
 

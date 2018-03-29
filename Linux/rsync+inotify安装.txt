@@ -1,4 +1,4 @@
-1.安装rsync(一般系统自带)
+﻿1.安装rsync(一般系统自带)
 sudo apt-get install rsync
 
 2.服务端配置
@@ -62,17 +62,7 @@ done
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 附加：
 sudo apt-get intall unison
+
 

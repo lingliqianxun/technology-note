@@ -1,4 +1,4 @@
-# pip --help
+﻿# pip --help
 
 Usage:
   pip <command> [options]
@@ -47,5 +47,3 @@ dir2pi /pypi ###对pypi目录下的所有软件包建立索引
 5.vim ~/.pip/.pip.conf 配置使用新搭建的pypi源
 [global]
 index-url = http://your_host_ip/pypi/simple
-
-

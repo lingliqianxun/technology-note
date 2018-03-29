@@ -1,4 +1,4 @@
-1、rsyncd.conf常用配置
+﻿1、rsyncd.conf常用配置
 
 motd file = /etc/rsyncd.motd  #rsync启动时欢迎信息页面文件位置（文件内容自定义）
 pid file = /var/run/rsyncd.pid  #pid文件的存放位置
@@ -165,5 +165,6 @@ dont compress = *.gz *.tgz *.zip *.z *.rpm *.deb *.iso *.bz2 *.tbz  #用来指�
 -h, --help 显示帮助信息
 
 ============================================
+
 
 

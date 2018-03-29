@@ -1,4 +1,4 @@
-连接VPN
+﻿连接VPN
 
 1.安装
 sudo apt-get install pptp-linux
@@ -60,3 +60,4 @@ iptables -t nat -I POSTROUTING -j MASQUERADE
 sudo iptables -t nat -A POSTROUTING -s 10.1.1.0/24 -o p2p1 -j MASQUERADE
 查看
 sudo iptables --table nat -L POSTROUTING
+

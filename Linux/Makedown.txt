@@ -1,4 +1,4 @@
-1.安装apache2
+﻿1.安装apache2
 sudo apt-get apache2
 重启Apache
 sudo /etc/init.d/apache2 restart

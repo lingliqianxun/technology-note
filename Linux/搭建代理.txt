@@ -1,4 +1,4 @@
-配置普通HTTP正向代理
+﻿配置普通HTTP正向代理
 
 安装	
 sudo apt-get install squid
@@ -12,3 +12,4 @@ http_access allow all
 sudo service squid3 restart
 
 注意： squid的http默认代理端口为 3128
+

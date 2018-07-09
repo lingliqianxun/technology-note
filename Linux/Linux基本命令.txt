@@ -499,19 +499,19 @@ h= hash 进度条
  --replacefiles 文件冲突，覆盖安装
  --nodeps 忽略依赖性，强行安装
 RPM常用命令
-rpm –qa  :查询所有安装过的rpm软件
-rpm –q 软件包名  :查询某个软件包是否安装过
-rpm –qi 软件包名  :查询软件包信息
-rpm –ql 软件包名  :查询软件包中的文件信息
-rpm –qf 文件全路径名  :查询文件所属的软件包
-rpm –qip 包文件名  :查询包的信息(对这个包的介绍,改该软件包未安装到系统中)
-rpm –qd 帮助文档位置
-rpm –qc 定位配置文件
-rpm –e  软件名称  :卸载软件包
-rpm –e –nodeps
+rpm -qa  :查询所有安装过的rpm软件
+rpm -q 软件包名  :查询某个软件包是否安装过
+rpm -qi 软件包名  :查询软件包信息
+rpm -ql 软件包名  :查询软件包中的文件信息
+rpm -qf 文件全路径名  :查询文件所属的软件包
+rpm -qip 包文件名  :查询包的信息(对这个包的介绍,改该软件包未安装到系统中)
+rpm -qd 帮助文档位置
+rpm -qc 定位配置文件
+rpm -e  软件名称  :卸载软件包
+rpm -e --nodeps
 软件包中文件提取
-rpm2cpio    xxxx | cpio –idv ./xxx/xxx
-rpm –V 软件包名
+rpm2cpio    xxxx | cpio -idv ./xxx/xxx
+rpm -V 软件包名
 5 文件MD5值改变
 S 文件大小改变
 L 链接文件

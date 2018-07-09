@@ -15,7 +15,7 @@ tar -xvf vim-8.0.tar
 三、设置环境变量
 export CC=cc 配置编译器，可设置xlC_r、cc、gcc
 export OBJECT_MODE=64 配置系统位数32、64
-export CFLAGS=-qlanglvl=extc99 配置额外参数，gcc设置-maix=64或不设置
+export CFLAGS=-qlanglvl=extc99 配置额外参数，gcc设置export CFLAGS="-maix64"或不设置
 
 四、配置编译环境变量
 ./configure --prefix=/opt/freeware/ --enable-multibyte --disable-gui --without-x --disable-xsmp --with-features=huge

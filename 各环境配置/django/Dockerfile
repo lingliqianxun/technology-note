@@ -24,7 +24,7 @@ RUN pip3 install Pillow
 RUN pip3 install python3-memcached 
 RUN pip3 install psycopg2 
 RUN pip3 install pycrypto 
-#10.1.1.8上安装
+#10.1.1.8镜像
 #RUN pip3 install Django -i http://10.1.1.8/pip/simple/
 #RUN pip3 install django-filter -i http://10.1.1.8/pip/simple/
 #RUN pip3 install djangorestframework -i http://10.1.1.8/pip/simple/
@@ -33,6 +33,7 @@ RUN pip3 install pycrypto
 #RUN pip3 install python3-memcached -i http://10.1.1.8/pip/simple/
 #RUN pip3 install psycopg2 -i http://10.1.1.8/pip/simple/
 #RUN pip3 install pycrypto -i http://10.1.1.8/pip/simple/
+#阿里云镜像-i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
 
 #安装语言包
 RUN apt-get install -y locales
